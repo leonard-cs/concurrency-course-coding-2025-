@@ -37,6 +37,11 @@ else()
   message(FATAL_ERROR "The clang compiler is required")
 endif()
 
+function(add_example folder name)
+  add_executable(${name} src/${folder}/${name}.cc)
+  target_link_libraries(${name} PRIVATE Threads::Threads)
+endfunction()
+
 add_executable(demo_recursive_mutexes
         src/recursive_mutex/container.h
         src/recursive_mutex/recursive_mutex.h
@@ -44,6 +49,8 @@ add_executable(demo_recursive_mutexes
         )
 target_include_directories(demo_recursive_mutexes PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(demo_recursive_mutexes PRIVATE Threads::Threads)
+
+add_example(fifo lecture_fifo)
 
 add_executable(demo_shared_mutexes
   src/shared_mutexes/shared_mutex_base.h
