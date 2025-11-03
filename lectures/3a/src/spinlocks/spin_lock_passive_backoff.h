@@ -1,27 +1,42 @@
-#ifndef SPIN_LOCK_PASSIVE_BACKOFF_H
-#define SPIN_LOCK_PASSIVE_BACKOFF_H
+// #ifndef SPIN_LOCK_PASSIVE_BACKOFF_H
+// #define SPIN_LOCK_PASSIVE_BACKOFF_H
 
-#include <emmintrin.h>
+// #include <emmintrin.h>
 
-#include <atomic>
-#include <string>
+// #include <atomic>
+// #include <string>
 
-class SpinLockPassiveBackoff {
- public:
-  SpinLockPassiveBackoff() {}
+// class SpinLockPassiveBackoff {
+//  public:
+//   SpinLockPassiveBackoff() : lock_bit_(false) {}
 
-  void Lock() {
-    // TODO
-  }
+//   void Lock() {
+//     while (lock_bit_.exchange(true)) {
+//       // We didn't get the lock!
+//       // Rather than immediately trying again, spin until we see
+//       // that the lock is free.
+//       do {
+//         // The lock is not ready for us.
+//         // Passively do nothing.
+//         _mm_pause();  // Low energy pause
+//         _mm_pause();  // Low energy pause
+//         _mm_pause();  // Low energy pause
+//         _mm_pause();  // Low energy pause
+//       } while (lock_bit_.load());
 
-  void Unlock() {
-    // TODO
-  }
+//       // We see that the lock is free! Go back around the outer
+//       // loop and try to grab it.
+//     }
+//     // We only leave the loop if we have the lock
+//   }
 
-  [[nodiscard]] static std::string GetName() { return "Passive backoff"; }
+//   void Unlock() { lock_bit_.store(false); }
 
- private:
-  // TODO
-};
+//   [[nodiscard]] static std::string GetName() { return "Passive backoff"; }
 
-#endif  // SPIN_LOCK_PASSIVE_BACKOFF_H
+//  private:
+//   // Also see atomic_flag for interest
+//   std::atomic<bool> lock_bit_;
+// };
+
+// #endif  // SPIN_LOCK_PASSIVE_BACKOFF_H

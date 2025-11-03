@@ -6,20 +6,33 @@
 
 class SpinLockActiveBackoff {
  public:
-  SpinLockActiveBackoff() {}
+  SpinLockActiveBackoff() : lock_bit_(false) {}
 
   void Lock() {
-    // TODO
+    while (lock_bit_.exchange(true)) {
+      // We didn't get the lock!
+      // Rather than immediately trying again, spin until we see
+      // that the lock is free.
+      do {
+        // The lock is not ready for us.
+        for (volatile int i = 0; i < 100; i = i + 1) {
+          // Do nothing
+        }
+      } while (lock_bit_.load());
+
+      // We see that the lock is free! Go back around the outer
+      // loop and try to grab it.
+    }
+    // We only leave the loop if we have the lock
   }
 
-  void Unlock() {
-    // TODO
-  }
+  void Unlock() { lock_bit_.store(false); }
 
   [[nodiscard]] static std::string GetName() { return "Active backoff"; }
 
  private:
-  // TODO
+  // Also see atomic_flag for interest
+  std::atomic<bool> lock_bit_;
 };
 
 #endif  // SPIN_LOCK_ACTIVE_BACKOFF_H
