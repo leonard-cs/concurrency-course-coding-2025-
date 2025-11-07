@@ -36,7 +36,8 @@
 
 //   void Unlock() { lock_bit_.store(false); }
 
-//   [[nodiscard]] static std::string GetName() { return "Exponential backoff"; }
+//   [[nodiscard]] static std::string GetName() { return "Exponential backoff";
+//   }
 
 //  private:
 //   // Also see atomic_flag for interest

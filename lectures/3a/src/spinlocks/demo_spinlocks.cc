@@ -173,15 +173,16 @@ int main(int argc, char** argv) {
   } else if (lock_kind == "active_backoff") {
     RunBenchmark<SpinLockActiveBackoff>(benchmark_is_performance, num_threads,
                                         increments_per_thread);
-  // } else if (lock_kind == "passive_backoff") {
-  //   RunBenchmark<SpinLockPassiveBackoff>(benchmark_is_performance, num_threads,
-  //                                        increments_per_thread);
-  // } else if (lock_kind == "exp_backoff") {
-  //   RunBenchmark<SpinLockExponentialBackoff>(
-  //       benchmark_is_performance, num_threads, increments_per_thread);
-  // } else if (lock_kind == "ticket") {
-  //   RunBenchmark<SpinLockTicket>(benchmark_is_performance, num_threads,
-  //                                increments_per_thread);
+    // } else if (lock_kind == "passive_backoff") {
+    //   RunBenchmark<SpinLockPassiveBackoff>(benchmark_is_performance,
+    //   num_threads,
+    //                                        increments_per_thread);
+    // } else if (lock_kind == "exp_backoff") {
+    //   RunBenchmark<SpinLockExponentialBackoff>(
+    //       benchmark_is_performance, num_threads, increments_per_thread);
+    // } else if (lock_kind == "ticket") {
+    //   RunBenchmark<SpinLockTicket>(benchmark_is_performance, num_threads,
+    //                                increments_per_thread);
   } else {
     std::cerr << "Unknown lock kind: " << lock_kind << std::endl;
     return 1;
