@@ -4,4 +4,4 @@ set -e
 set -u
 set -x
 
-./scripts/source_files.sh | xargs clang-format-18 -i --verbose
+./scripts/source_files.sh | xargs clang-format -i --verbose
