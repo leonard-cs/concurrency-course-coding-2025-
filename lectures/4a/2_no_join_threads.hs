@@ -7,7 +7,6 @@ main = do
   -- Two threads, each says their name
   forkIO (print "Hello, I am James")
   forkIO (print "Hello, I am Tianyi")
-  return ()
 
 -- ghc -02 2_no_join_threads.hs -threaded
 -- ./2_no_join_threads

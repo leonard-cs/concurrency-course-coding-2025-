@@ -2,10 +2,12 @@ import Control.Concurrent
 import Control.Monad
 import System.IO
 
+
 printThenJoin :: String -> MVar () -> IO ()
 printThenJoin s handle = do
   print s
-  putMVar handle () -- "I am done"
+  putMVar handle () -- "I am done!"
+
 
 main = do
   hSetBuffering stdout NoBuffering
