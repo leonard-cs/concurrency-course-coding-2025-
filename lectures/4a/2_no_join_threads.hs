@@ -8,5 +8,5 @@ main = do
   forkIO (print "Hello, I am James")
   forkIO (print "Hello, I am Tianyi")
 
--- ghc -02 2_no_join_threads.hs -threaded
+-- ghc -O2 2_no_join_threads.hs -threaded
 -- ./2_no_join_threads

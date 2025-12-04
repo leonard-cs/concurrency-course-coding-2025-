@@ -50,3 +50,6 @@ main = do
   result <- takeMVar producerHandle -- get result from consumer
 
   print (result)
+
+-- ghc -O2 5_producer_consumer.hs -threaded
+-- ./5_producer_consumer
